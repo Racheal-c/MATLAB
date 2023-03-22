@@ -1,0 +1,402 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>CHEK XIOU RUE (AE190102)</title><meta name="generator" content="MATLAB 9.11"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2022-12-07"><meta name="DC.source" content="CHEKXIOURUE.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; }
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+span.typesection { color:#A0522D }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h1>CHEK XIOU RUE (AE190102)</h1><!--introduction--><p>MEDICAL IMAGING (INDIVIDUAL ASSIGNMENT)</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">IMAGE 12.JPG</a></li><li><a href="#2">IMAGE 21.JPG</a></li></ul></div><h2 id="1">IMAGE 12.JPG</h2><pre class="codeinput"><span class="comment">% The purpose of close and clear syntax are to clear any data and free up the memory.</span>
+close <span class="string">all</span>;
+clear <span class="string">all</span>;
+<span class="comment">% The purpose of clc is to clear all the previous output.</span>
+clc;
+<span class="comment">% The input image (brain12.jpg) is defined as imgOri.</span>
+<span class="comment">% imread syntax is used to read image from graphic file.</span>
+imgOri = imread(<span class="string">'brain12.jpg'</span>);
+<span class="comment">% fspecial syntax is a predefined 2d filter that returns a 3 returns a 3-by-3 filter approximating the shape of the</span>
+<span class="comment">% two-dimensional Laplacian operator. The value of alpha which is 0.2 controls the shape of the Laplacian.</span>
+<span class="comment">% This operation below is used to calculate the coefficient of the filtered image.</span>
+<span class="comment">% The value of Laplacian Filter is defined as [0 0 0;0 1 0;0 0 0]. The value of 1 is chosen as the lower the value the less contrast and</span>
+<span class="comment">% brightness of the image.</span>
+sharpCoeff = [0 0 0;0 1 0;0 0 0]-fspecial(<span class="string">'laplacian'</span>,0.2);
+<span class="comment">% imfilter syntax is used to filter the original image using Laplacian filter.</span>
+imgSharp = imfilter(imgOri,sharpCoeff);
+figure (1)
+<span class="comment">%imshowpair syntax is used to display and compare the differences between the original</span>
+<span class="comment">%image and the filtered image with the title named as 'Brain and Filtered Brain'.</span>
+imshowpair(imgOri,imgSharp,<span class="string">'montage'</span>)
+title(<span class="string">'Figure 1: Brain and Filtered Brain'</span>)
+
+<span class="comment">% The image is read using the imread syntax.</span>
+img=imread(<span class="string">'brain12.jpg'</span>);
+<span class="comment">% The input image is converted from grayscale image to binary image 'bw' based on threshold by</span>
+<span class="comment">% replacing all the pixels in the input image with luminance of 0.7 where</span>
+<span class="comment">% white colour is more obvious in the image.</span>
+bw=im2bw(img,0.7);
+<span class="comment">% bwlabel syntax is used to label the connected components of tumor in</span>
+<span class="comment">% the input image.</span>
+label=bwlabel(bw);
+<span class="comment">% regionprops syntax is used to calculate properties of image regions</span>
+stats=regionprops(label,<span class="string">'Solidity'</span>,<span class="string">'Area'</span>,<span class="string">'BoundingBox'</span>,<span class="string">'Centroid'</span>);
+density=[stats.Solidity];
+area=[stats.Area];
+high_dense_area=density&gt;0.5;
+max_area=max(area(high_dense_area));
+<span class="comment">% The value of the area of the tumor is 1330</span>
+<span class="comment">% The find syntax is required to find the area of the tumor</span>
+tumor_label=find(area==max_area);
+<span class="comment">% The box function is to draw the bounding box on the tumor.</span>
+box = stats(tumor_label);
+wantedBox = box.BoundingBox;
+<span class="comment">%ismember function is useful for creating a binary image containing only objects or regions</span>
+<span class="comment">% that meet certain criteria. In this case, these commands create a binary image containing</span>
+<span class="comment">% only the regions whose area is equal to max_area.</span>
+tumor=ismember(label,tumor_label);
+hold <span class="string">on</span>;
+rectangle(<span class="string">'Position'</span>,wantedBox,<span class="string">'EdgeColor'</span>,<span class="string">'y'</span>);
+hold <span class="string">off</span>;
+<span class="comment">%This is used to creates square with 5 pixels.</span>
+se=strel(<span class="string">'square'</span>,5);
+<span class="comment">% The tumor is specified with the square with 5 pixels.</span>
+tumor=imdilate(tumor,se);
+
+<span class="comment">% Figure 2 shows the brain, tumor alone and detected tumor.</span>
+figure(2);
+<span class="comment">% subplot here divides the current figure into an 1-by-3 grid and creates axes in the position specified by 1.</span>
+subplot(1,3,1);
+<span class="comment">% image is displayed based on the range of 1 to 5 pixels.</span>
+imshow(img,[]);
+title(<span class="string">'Brain'</span>);
+<span class="comment">%  subplot here divides the current figure into an 1-by-3 grid and creates axes in the position specified by 2.</span>
+subplot(1,3,2);
+<span class="comment">% tumor is displayed based on the range of 1 to 5 pixels.</span>
+imshow(tumor,[]);
+title(<span class="string">'Tumor Alone'</span>);
+<span class="comment">% The purpose of the function is to calculate boundaries of regions in image and</span>
+<span class="comment">% overlay the boundaries on the image.</span>
+[B,L]=bwboundaries(tumor,<span class="string">'noholes'</span>);
+<span class="comment">%  subplot here divides the current figure into an 1-by-3 grid and creates axes in the position specified by 3.</span>
+subplot(1,3,3);
+<span class="comment">% image is displayed based on the range of 1 to 5 pixels.</span>
+imshow(img,[]);
+hold <span class="string">on</span>
+<span class="comment">% The purpose of this loop is to calculate the length until certain boundary.</span>
+<span class="keyword">for</span> i=1:length(B)
+plot(B{i}(:,2),B{i}(:,1), <span class="string">'y'</span> ,<span class="string">'linewidth'</span>,1.45);
+<span class="keyword">end</span>
+title(<span class="string">'Detected Tumor'</span>);
+hold <span class="string">off</span>;
+</pre><img vspace="5" hspace="5" src="CHEKXIOURUE_01.png" alt=""> <img vspace="5" hspace="5" src="CHEKXIOURUE_02.png" alt=""> <h2 id="2">IMAGE 21.JPG</h2><pre class="codeinput"><span class="comment">% The purpose of close and clear syntax are to clear any data and free up the memory.</span>
+close <span class="string">all</span>;
+clear <span class="string">all</span>;
+<span class="comment">% The purpose of clc is to clear all the previous output.</span>
+clc;
+<span class="comment">% The input image (brain12.jpg) is defined as imgOri.</span>
+<span class="comment">% imread syntax is used to read image from graphic file.</span>
+imgOri = imread(<span class="string">'brain21.jpg'</span>);
+<span class="comment">% fspecial syntax is a predefined 2d filter that returns a 3 returns a 3-by-3 filter approximating the shape of the two-dimensional Laplacian operator,</span>
+<span class="comment">% The value of alpha which is 0.2 controls the shape of the Laplacian.</span>
+<span class="comment">% This operation below is used to calculate the coefficient of the filtered image.</span>
+<span class="comment">% The value of Laplacian Filter is defined as [0 0 0;0 1 0;0 0 0]. The</span>
+<span class="comment">% value of 1 is chosen as the lower the value the less contrast and brightness of the image.</span>
+sharpCoeff = [0 0 0;0 1 0;0 0 0]-fspecial(<span class="string">'laplacian'</span>,0.2);
+<span class="comment">% imfilter syntax is used to filter the original image using Laplacian filter.</span>
+imgSharp = imfilter(imgOri,sharpCoeff);
+figure (1)
+<span class="comment">%imshowpair syntax is used to display and compare the differences between the original</span>
+<span class="comment">%image and the filtered image with the title named as 'Brain and Filtered Brain'.</span>
+imshowpair(imgOri,imgSharp,<span class="string">'montage'</span>)
+title(<span class="string">'Figure 1:Brain and Filtered Brain'</span>)
+<span class="comment">% The image is read using the imread syntax.</span>
+img=imread(<span class="string">'brain21.jpg'</span>);
+<span class="comment">% The input image is converted from grayscale image to binary image 'bw' based on threshold by</span>
+<span class="comment">% replacing all the pixels in the input image with luminance of 0.7 where</span>
+<span class="comment">% white colour is more obvious in the image.</span>
+bw=im2bw(img,0.7);
+<span class="comment">% bwlabel syntax is used to label the connected components of tumor in</span>
+<span class="comment">% the input image.</span>
+label=bwlabel(bw);
+<span class="comment">% regionprops syntax is used to calculate properties of image regions</span>
+stats=regionprops(label,<span class="string">'Solidity'</span>,<span class="string">'Area'</span>,<span class="string">'BoundingBox'</span>,<span class="string">'Centroid'</span>);
+density=[stats.Solidity];
+area=[stats.Area];
+high_dense_area=density&gt;0.5;
+max_area=max(area(high_dense_area));
+<span class="comment">% The value of the area of the tumor is 1513</span>
+<span class="comment">% The find syntax is required to find the area of the tumor</span>
+tumor_label=find(area==max_area);
+<span class="comment">% The box function is to draw the bounding box on the tumor.</span>
+box = stats(tumor_label);
+wantedBox = box.BoundingBox;
+<span class="comment">%ismember function is useful for creating a binary image containing only objects or regions</span>
+<span class="comment">% that meet certain criteria. In this case, these commands create a binary image containing</span>
+<span class="comment">% only the regions whose area is equal to max_area.</span>
+tumor=ismember(label,tumor_label);
+hold <span class="string">on</span>;
+rectangle(<span class="string">'Position'</span>,wantedBox,<span class="string">'EdgeColor'</span>,<span class="string">'y'</span>);
+hold <span class="string">off</span>;
+<span class="comment">%This is used to creates square with 5 pixels.</span>
+se=strel(<span class="string">'square'</span>,5);
+<span class="comment">% The tumor is specified with the square with 5 pixels.</span>
+tumor=imdilate(tumor,se);
+
+<span class="comment">% Figure 2 shows the brain, tumor alone and detected tumor.</span>
+figure(2);
+<span class="comment">% subplot here divides the current figure into an 1-by-3 grid and creates axes in the position specified by 1.</span>
+subplot(1,3,1);
+<span class="comment">% image is displayed based on the range of 1 to 5 pixels.</span>
+imshow(img,[]);
+title(<span class="string">'Brain'</span>);
+<span class="comment">%  subplot here divides the current figure into an 1-by-3 grid and creates axes in the position specified by 2.</span>
+subplot(1,3,2);
+<span class="comment">% tumor is displayed based on the range of 1 to 5 pixels.</span>
+imshow(tumor,[]);
+title(<span class="string">'Tumor Alone'</span>);
+<span class="comment">% The purpose of the function is to calculate boundaries of regions in image and</span>
+<span class="comment">% overlay the boundaries on the image.</span>
+[B,L]=bwboundaries(tumor,<span class="string">'noholes'</span>);
+<span class="comment">%  subplot here divides the current figure into an 1-by-3 grid and creates axes in the position specified by 3.</span>
+subplot(1,3,3);
+<span class="comment">% image is displayed based on the range of 1 to 5 pixels.</span>
+imshow(img,[]);
+hold <span class="string">on</span>
+<span class="comment">% The purpose of this loop is to calculate the length until certain boundary.</span>
+<span class="keyword">for</span> i=1:length(B)
+plot(B{i}(:,2),B{i}(:,1), <span class="string">'y'</span> ,<span class="string">'linewidth'</span>,1.45);
+<span class="keyword">end</span>
+title(<span class="string">'Detected Tumor'</span>);
+hold <span class="string">off</span>;
+</pre><img vspace="5" hspace="5" src="CHEKXIOURUE_03.png" alt=""> <img vspace="5" hspace="5" src="CHEKXIOURUE_04.png" alt=""> <p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2021b</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% CHEK XIOU RUE (AE190102)
+% MEDICAL IMAGING (INDIVIDUAL ASSIGNMENT)
+%% IMAGE 12.JPG
+
+% The purpose of close and clear syntax are to clear any data and free up the memory.
+close all;
+clear all;
+% The purpose of clc is to clear all the previous output.
+clc;
+% The input image (brain12.jpg) is defined as imgOri.
+% imread syntax is used to read image from graphic file.
+imgOri = imread('brain12.jpg');
+% fspecial syntax is a predefined 2d filter that returns a 3 returns a 3-by-3 filter approximating the shape of the 
+% two-dimensional Laplacian operator. The value of alpha which is 0.2 controls the shape of the Laplacian.
+% This operation below is used to calculate the coefficient of the filtered image.
+% The value of Laplacian Filter is defined as [0 0 0;0 1 0;0 0 0]. The value of 1 is chosen as the lower the value the less contrast and
+% brightness of the image.
+sharpCoeff = [0 0 0;0 1 0;0 0 0]-fspecial('laplacian',0.2);
+% imfilter syntax is used to filter the original image using Laplacian filter.
+imgSharp = imfilter(imgOri,sharpCoeff);
+figure (1)
+%imshowpair syntax is used to display and compare the differences between the original
+%image and the filtered image with the title named as 'Brain and Filtered Brain'.
+imshowpair(imgOri,imgSharp,'montage')
+title('Figure 1: Brain and Filtered Brain')
+
+% The image is read using the imread syntax.
+img=imread('brain12.jpg');
+% The input image is converted from grayscale image to binary image 'bw' based on threshold by
+% replacing all the pixels in the input image with luminance of 0.7 where
+% white colour is more obvious in the image.
+bw=im2bw(img,0.7);
+% bwlabel syntax is used to label the connected components of tumor in
+% the input image.
+label=bwlabel(bw);
+% regionprops syntax is used to calculate properties of image regions
+stats=regionprops(label,'Solidity','Area','BoundingBox','Centroid');
+density=[stats.Solidity];
+area=[stats.Area];
+high_dense_area=density>0.5;
+max_area=max(area(high_dense_area));
+% The value of the area of the tumor is 1330
+% The find syntax is required to find the area of the tumor
+tumor_label=find(area==max_area);
+% The box function is to draw the bounding box on the tumor.
+box = stats(tumor_label);
+wantedBox = box.BoundingBox;
+%ismember function is useful for creating a binary image containing only objects or regions 
+% that meet certain criteria. In this case, these commands create a binary image containing 
+% only the regions whose area is equal to max_area.
+tumor=ismember(label,tumor_label);
+hold on;
+rectangle('Position',wantedBox,'EdgeColor','y');
+hold off;
+%This is used to creates square with 5 pixels.
+se=strel('square',5);
+% The tumor is specified with the square with 5 pixels.
+tumor=imdilate(tumor,se);
+
+% Figure 2 shows the brain, tumor alone and detected tumor.
+figure(2);
+% subplot here divides the current figure into an 1-by-3 grid and creates axes in the position specified by 1.
+subplot(1,3,1);
+% image is displayed based on the range of 1 to 5 pixels.
+imshow(img,[]);
+title('Brain');
+%  subplot here divides the current figure into an 1-by-3 grid and creates axes in the position specified by 2.
+subplot(1,3,2);
+% tumor is displayed based on the range of 1 to 5 pixels.
+imshow(tumor,[]);
+title('Tumor Alone');
+% The purpose of the function is to calculate boundaries of regions in image and 
+% overlay the boundaries on the image.
+[B,L]=bwboundaries(tumor,'noholes');
+%  subplot here divides the current figure into an 1-by-3 grid and creates axes in the position specified by 3.
+subplot(1,3,3);
+% image is displayed based on the range of 1 to 5 pixels.
+imshow(img,[]);
+hold on
+% The purpose of this loop is to calculate the length until certain boundary.
+for i=1:length(B)
+plot(B{i}(:,2),B{i}(:,1), 'y' ,'linewidth',1.45);
+end
+title('Detected Tumor');
+hold off;
+
+%% IMAGE 21.JPG
+
+% The purpose of close and clear syntax are to clear any data and free up the memory.
+close all;
+clear all;
+% The purpose of clc is to clear all the previous output.
+clc;
+% The input image (brain12.jpg) is defined as imgOri.
+% imread syntax is used to read image from graphic file.
+imgOri = imread('brain21.jpg');
+% fspecial syntax is a predefined 2d filter that returns a 3 returns a 3-by-3 filter approximating the shape of the two-dimensional Laplacian operator,
+% The value of alpha which is 0.2 controls the shape of the Laplacian.
+% This operation below is used to calculate the coefficient of the filtered image.
+% The value of Laplacian Filter is defined as [0 0 0;0 1 0;0 0 0]. The
+% value of 1 is chosen as the lower the value the less contrast and brightness of the image.
+sharpCoeff = [0 0 0;0 1 0;0 0 0]-fspecial('laplacian',0.2);
+% imfilter syntax is used to filter the original image using Laplacian filter.
+imgSharp = imfilter(imgOri,sharpCoeff);
+figure (1)
+%imshowpair syntax is used to display and compare the differences between the original
+%image and the filtered image with the title named as 'Brain and Filtered Brain'.
+imshowpair(imgOri,imgSharp,'montage')
+title('Figure 1:Brain and Filtered Brain')
+% The image is read using the imread syntax.
+img=imread('brain21.jpg');
+% The input image is converted from grayscale image to binary image 'bw' based on threshold by
+% replacing all the pixels in the input image with luminance of 0.7 where
+% white colour is more obvious in the image.
+bw=im2bw(img,0.7);
+% bwlabel syntax is used to label the connected components of tumor in
+% the input image.
+label=bwlabel(bw);
+% regionprops syntax is used to calculate properties of image regions
+stats=regionprops(label,'Solidity','Area','BoundingBox','Centroid');
+density=[stats.Solidity];
+area=[stats.Area];
+high_dense_area=density>0.5;
+max_area=max(area(high_dense_area));
+% The value of the area of the tumor is 1513
+% The find syntax is required to find the area of the tumor
+tumor_label=find(area==max_area);
+% The box function is to draw the bounding box on the tumor.
+box = stats(tumor_label);
+wantedBox = box.BoundingBox;
+%ismember function is useful for creating a binary image containing only objects or regions 
+% that meet certain criteria. In this case, these commands create a binary image containing 
+% only the regions whose area is equal to max_area.
+tumor=ismember(label,tumor_label);
+hold on;
+rectangle('Position',wantedBox,'EdgeColor','y');
+hold off;
+%This is used to creates square with 5 pixels.
+se=strel('square',5);
+% The tumor is specified with the square with 5 pixels.
+tumor=imdilate(tumor,se);
+
+% Figure 2 shows the brain, tumor alone and detected tumor.
+figure(2);
+% subplot here divides the current figure into an 1-by-3 grid and creates axes in the position specified by 1.
+subplot(1,3,1);
+% image is displayed based on the range of 1 to 5 pixels.
+imshow(img,[]);
+title('Brain');
+%  subplot here divides the current figure into an 1-by-3 grid and creates axes in the position specified by 2.
+subplot(1,3,2);
+% tumor is displayed based on the range of 1 to 5 pixels.
+imshow(tumor,[]);
+title('Tumor Alone');
+% The purpose of the function is to calculate boundaries of regions in image and 
+% overlay the boundaries on the image.
+[B,L]=bwboundaries(tumor,'noholes');
+%  subplot here divides the current figure into an 1-by-3 grid and creates axes in the position specified by 3.
+subplot(1,3,3);
+% image is displayed based on the range of 1 to 5 pixels.
+imshow(img,[]);
+hold on
+% The purpose of this loop is to calculate the length until certain boundary.
+for i=1:length(B)
+plot(B{i}(:,2),B{i}(:,1), 'y' ,'linewidth',1.45);
+end
+title('Detected Tumor');
+hold off;
+##### SOURCE END #####
+--></body></html>
